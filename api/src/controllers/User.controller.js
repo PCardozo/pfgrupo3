@@ -1,8 +1,9 @@
-const {User} = require('../db');
+const {User} = require('../db.js');
 
 const emptyDB = { err: "Database empty" };
 const badReq = { err: "Bad request" };
 const notFound = { err: "Not Found" };
+
 
 async function userInitLoad(){
     const aux = [
@@ -35,6 +36,8 @@ async function deleteUser(req, res) {
         return res.status(500).send(error);
     }
 }
+
+
 
 module.exports={
     userInitLoad,

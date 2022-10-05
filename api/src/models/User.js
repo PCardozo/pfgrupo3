@@ -11,9 +11,18 @@ module.exports= (sequelize) => {
             primaryKey: true,
             unique:true
         },
+        name: {
+            type:DataTypes.STRING,
+            allowNull:true,
+        },
+        lastName: {
+            type:DataTypes.STRING,
+            allowNull:true,
+        },
         email: {
             type: DataTypes.STRING,
             allowNull: false,
+            unique:true,
             validate: {
                 isEmail: true,
             }
@@ -21,9 +30,7 @@ module.exports= (sequelize) => {
         password: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate: {
-                len: [8,22]
-            }
+            
         },
         isAdmin: {
             type: DataTypes.BOOLEAN,
