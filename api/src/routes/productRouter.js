@@ -7,7 +7,7 @@ const {
     searchProducts,
     updateProduct
 } = require('../controllers/Product.controller')
-
+//
 const {getAllTypes} = require('../controllers/Product_type.controller')
 
 router.get('/all',getAllProducts);
