@@ -5,6 +5,7 @@ const {
     getDetail,
     createProduct,
     searchProducts,
+
     updateProduct,
     deleteProduct,
 } = require('../controllers/Products/Product.controller')
@@ -16,6 +17,12 @@ const {
 const {getAllTypes} = require('../controllers/Products/Product_type.controller')
 
 //router.post('/tocart',addToCart)
+
+    updateProduct
+} = require('../controllers/Product.controller')
+//
+const {getAllTypes} = require('../controllers/Product_type.controller')
+
 
 router.get('/all',getAllProducts);
 
