@@ -68,9 +68,10 @@ const SignUp = () => {
   const onSubmit = async (data,e) => {
     try {
       const register = await axios.post("http://localhost:3001/user/auth/register",data)
-      if(register.data.response ==="User create succesfull"){
-        console.log({token:register.data.token})
-        alert("User created")
+      console.log(register)
+      if(register.status === 200){
+        
+        alert("User was registered successfully! Please check your email")
         e.target.reset()
       }
       setCustomError("")
@@ -80,7 +81,7 @@ const SignUp = () => {
         setCustomError(error.response.data.errors[0].msg)
         setTimeout(() => {
           setCustomError("")
-        },4000);
+        },5000);
       }
     }
   };

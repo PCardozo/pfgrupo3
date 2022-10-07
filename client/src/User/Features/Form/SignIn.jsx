@@ -1,4 +1,5 @@
 import React from "react";
+import axios from 'axios';
 
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -45,15 +46,17 @@ const SignIn = () => {
     handleSubmit,
   } = useForm();
 
-  const onSubmit = async (data) => {
-    console.log("Onsubmit", data);
-    // try {
-    //   await axios.post("http://localhost:3001/products/create", data);
-    // } catch (error) {
-    //   console.log(error);
-    // }
+  const onSubmit = async (data,e) => {
+    try {
+      const login = await axios.post("http://localhost:3001/user/auth/login",data);
+      if(login.status === 200){
+        alert("welcome")
+        e.target.reset()
+      }
+    } catch (error) {
+      console.log(error.message)
+    }
   };
-  console.log(errors);
 
   return (
     <ThemeProvider theme={theme}>
