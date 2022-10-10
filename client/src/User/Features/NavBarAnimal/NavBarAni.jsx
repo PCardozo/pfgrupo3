@@ -13,7 +13,7 @@ import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 
 const Filter = styled("div")(({ theme }) => ({
-  width: "50px",
+  width: "60px",
   position: "relative",
   display: "flex",
   justifyContent: "center",
