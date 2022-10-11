@@ -14,7 +14,7 @@ const {
     deleteWholeCart,
     getCart,
 } = require('../controllers/Shop/shopCart.controller.js')
-
+router.get('/', getAllUsers)
 router.delete('/:id',deleteUser);
 router.post('/create',addUser);
 router.put('/update', updateUser);

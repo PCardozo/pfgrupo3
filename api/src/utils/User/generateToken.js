@@ -1,3 +1,5 @@
+require ('dotenv').config()
+const {JWT_SECRET_KEY} = process.env
 const jwt = require('jsonwebtoken');
 
 const tokenSign = async (user) => { //TODO: Genera Token
@@ -15,7 +17,7 @@ const tokenSign = async (user) => { //TODO: Genera Token
 
 const verifyToken = async (token) => {
     try {
-        return jwt.verify(token, process.env.JWT_SECRET)
+        return jwt.verify(token, process.env.JWT_SECRET_KEY)
     } catch (e) {
         return null
     }

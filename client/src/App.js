@@ -107,7 +107,11 @@ function App() {
             path="/forgot-password"
             element={user ? <Navigate to="/" replace /> : <ForgotPassword />}
           />
-          <Route exact path='/dashboard' element={<Dashboard />}/>
+          <Route path='/dashboardAdmin' element={<Dashboard />}>
+            <Route path="" element={<DashboardLanding />} />
+            <Route path='animalsAdmin' element={<AnimalsTable />} />
+            <Route path="productsAdmin" element={<ProductTable />} />
+          </Route>
           
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

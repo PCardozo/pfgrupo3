@@ -301,10 +301,12 @@ export default function ResponsiveAppBar() {
                   <Typography textAlign="center">Account</Typography>
                 </MenuItem>
                 <Divider />
-                <MenuItem onClick={handleDashboard}>
-                  <DashboardIcon sx={{ mr: 2 }} />
-                  <Typography textAlign="center">Dashboard</Typography>
-                </MenuItem>
+                <Link to="/dashboardAdmin">
+                  <MenuItem onClick={handleDashboard}>
+                    <DashboardIcon sx={{ mr: 2 }} />
+                    <Typography textAlign="center">Dashboard</Typography>
+                  </MenuItem>
+                </Link>
                 <MenuItem onClick={handleLogout}>
                   <LogoutIcon sx={{ mr: 2 }} />
                   <Typography textAlign="center">Logout</Typography>

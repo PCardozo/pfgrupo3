@@ -76,6 +76,8 @@ Purchase_order.belongsTo(User);
 Purchase_order.hasMany(Order_item);
 Order_item.belongsTo(Purchase_order);
 ////////////////////////////////////
+Animal.belongsToMany(Animal_type, {through:'anima_animalType'})
+Animal_type.belongsToMany(Animal, {through:'animal_animalType'})
 module.exports = {
   ...sequelize.models, 
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');

@@ -15,7 +15,7 @@ function preventDefault(event) {
 export default function ProductTable() {
   let {allProducts} = useSelector(state => state.products)
   let dispatch = useDispatch()
-  let [index, setIndex] = React.useState(3)
+  let [index, setIndex] = React.useState(10)
   let products = allProducts.slice(0, index)
 
 
@@ -28,12 +28,12 @@ export default function ProductTable() {
 
     
   function seeMoreProducts() {
-    setIndex(index + 3)
+    setIndex(index + 10)
   }
 
   function seeLessProducts() {
-    if(index <= 3) {
-      setIndex(3)
+    if(index <= 10) {
+      setIndex(10)
     }
     else {
       setIndex(index - 3)

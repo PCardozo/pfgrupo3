@@ -17,7 +17,7 @@ const onSubmit = async (data) => {
   try {
     const sendEmail = await axios.post(
       "http://localhost:3001/user/auth/forgot-password",
-      data
+      JSON.stringify(data)
     );
     Swal.fire({
       title: 'Email sent', 

@@ -71,7 +71,7 @@ const SignUp = () => {
 
   // const dispatch = useDispatch();
 
-  const onSubmit = async (data, e) => {
+  const onSubmit = async (data) => {
     console.log(data);
     try {
       const register = await axios.post(
@@ -91,6 +91,7 @@ const SignUp = () => {
       }
       setCustomError("");
     } catch (error) {
+      console.log(error)
       if (error.response.data.errors[0].msg) {
         setCustomError(error.response.data.errors[0].msg);
         setTimeout(() => {
