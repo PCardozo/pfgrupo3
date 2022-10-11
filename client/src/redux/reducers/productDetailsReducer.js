@@ -1,4 +1,4 @@
-import { GET_PRODUCT_DETAILS, CLEAR_PRODUCT_DETAILS } from "../actions/productDetailsActions";
+import { GET_PRODUCT_DETAILS, CLEAR_PRODUCT_DETAILS} from "../actions/productDetailsActions";
 
 const initialState = {
     productDetails: {}
@@ -16,6 +16,7 @@ const productDetailsReducer = (state = initialState, {type, payload}) => {
                 ...state,
                 productDetails: {}
             }
+        
         default: 
             return state
     }

@@ -18,10 +18,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
-import Chart from './Chart';
+import ProductTable from './productsTable';
 import Inqueries from './Inqueries';
 import AdoptionPetitions from './AdoptionPetitions';
 import { useSelector } from 'react-redux';
+import {Outlet, useLocation, useParams} from 'react-router-dom'
 
 function Copyright(props) {
   
@@ -168,22 +169,21 @@ function DashboardContent() {
         >
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4}}>
-            <Grid container spacing={3}>
-              
-              <Grid item xs={12} md={12} lg={8}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  <Chart />
-                </Paper>
-              </Grid> 
-             
-              <Grid item xs={24} md={12} lg={4}>
+            <Grid container spacing={3}>            
+              <Outlet />
+            </Grid>
+            <Copyright sx={{ pt: 4 }} />
+          </Container>
+        </Box>
+      </Box>
+    </ThemeProvider>
+  );
+}
+
+export function DashboardLanding() {
+  return (
+    <React.Fragment>
+      <Grid item xs={12} >
                 <Paper
                   sx={{
                     p: 2,
@@ -196,20 +196,16 @@ function DashboardContent() {
                   <Inqueries />
                 </Paper>
               </Grid>
+              
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
                   <AdoptionPetitions />
                 </Paper>
               </Grid>
-            </Grid>
-            <Copyright sx={{ pt: 4 }} />
-          </Container>
-        </Box>
-      </Box>
-    </ThemeProvider>
-  );
+    </React.Fragment>
+  )
 }
 
-export default function Dashboard() {
+export  function Dashboard() {
   return <DashboardContent />;
 }

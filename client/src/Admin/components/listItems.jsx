@@ -1,7 +1,8 @@
 import * as React from 'react';
-import  {People ,ShoppingCart, BarChart, Layers, Assignment, Home, Pets} from '@mui/icons-material/';
-import {Link} from 'react-router-dom'
+import  {People ,ShoppingCart, BarChart, Layers, Assignment, Home, Pets, Inventory} from '@mui/icons-material/';
+import {Link, useLocation} from 'react-router-dom'
 import { ListItemIcon, ListItemButton, ListItemText, ListSubheader } from '@mui/material';
+
 
 export const mainListItems = (
   <React.Fragment>
@@ -10,10 +11,18 @@ export const mainListItems = (
         <ListItemIcon>
           <Home />
         </ListItemIcon>
-        <ListItemText primary="Home" />
+        <ListItemText primary="Landing" />
       </ListItemButton>
     </Link>
-    <Link to='/home/animals'>
+    <Link to=''>
+      <ListItemButton>
+        <ListItemIcon>
+          <Home />
+        </ListItemIcon>
+        <ListItemText primary="Dashboard home" />
+      </ListItemButton>
+    </Link>
+    <Link to='animalsAdmin'>
       <ListItemButton>
         <ListItemIcon>
           <Pets />
@@ -21,12 +30,14 @@ export const mainListItems = (
         <ListItemText primary="Animals" />
       </ListItemButton>
     </Link>
+    <Link to='productsAdmin'>
     <ListItemButton>
       <ListItemIcon>
-        <People />
+        <Inventory/>
       </ListItemIcon>
-      <ListItemText primary="Customers" />
+      <ListItemText primary="Products" />
     </ListItemButton>
+    </Link>
     <ListItemButton>
       <ListItemIcon>
         <BarChart />

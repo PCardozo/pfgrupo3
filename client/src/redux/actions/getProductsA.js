@@ -25,3 +25,13 @@ export function getProductName(name) {
         }
     }
 }
+
+export function deleteProduct(id) {
+    return async function(dispatch) {
+        try {
+            await axios.delete(`http://localhost:3001/products/${id}`)
+        } catch (error) {
+            
+        }
+    }
+}

@@ -233,7 +233,7 @@ export default function ResponsiveAppBar() {
                                 <Typography textAlign="center">Account</Typography>
                             </MenuItem>
                             <Divider />
-                            <Link to= '/dashboard' style= {{color:'black'}}>
+                            <Link to= '/dashboardAdmin' style= {{color:'black'}}>
                             <MenuItem onClick={handleCloseUserMenu}>
                                 <DashboardIcon sx={{mr: 2}}/>
                                 <Typography textAlign="center">Dashboard</Typography>

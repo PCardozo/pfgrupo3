@@ -1,5 +1,6 @@
 import axios from "axios"
 
+
 export const GET_PRODUCT_DETAILS = "GET_PRODUCT_DETAILS"
 export const CLEAR_PRODUCT_DETAILS = "CLEAR_PRODUCT_DETAILS"
 
