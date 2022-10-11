@@ -13,6 +13,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 // React Hook Form
 import { useForm } from "react-hook-form";
@@ -69,7 +70,12 @@ const SignIn = () => {
       console.log(login.data);
       dispatch(signIn(data, navigateTo));
       // navigateTo("/");
-      alert(login.data.msg);
+      Swal.fire({
+        title: 'Logged in', 
+        text: login.data.msg, 
+        icon: 'success',
+        timer: 5000
+      });
       // if (
       //   login.data.response.data ===
       //   "Pending Account. Please Verify Your Email!"
@@ -85,7 +91,12 @@ const SignIn = () => {
       // } else if (error.response.data == `email ${email} invalid or not found`) {
       //   alert(`email ${email} invalid or not found`);
       // }
-      alert(error.response.data);
+      Swal.fire({
+        title: 'Login Failed', 
+        text: error.response.data, 
+        icon: 'error',
+        timer: 5000
+      });
     }
   };
   console.log(errors);

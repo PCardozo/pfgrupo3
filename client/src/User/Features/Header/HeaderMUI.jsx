@@ -1,6 +1,8 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { logout } from "../../../redux/actions/auth";
+import { useDispatch } from "react-redux";
 import AppBar from "@mui/material/AppBar";
 import Container from "@mui/material/Container";
 import Toolbar from "@mui/material/Toolbar";
@@ -22,14 +24,15 @@ import PersonIcon from "@mui/icons-material/Person";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { logout } from "../../../redux/actions/auth";
-import { useDispatch } from "react-redux";
 // import MenuIcon from '@mui/icons-material/Menu';
 import decode from "jwt-decode";
+import { useReducer } from "react";
 
 export default function ResponsiveAppBar() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   console.log(user);
+
+  const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -62,6 +65,11 @@ export default function ResponsiveAppBar() {
     navigate("/");
 
     setUser(null);
+    forceUpdate();
+  };
+
+  const handleDashboard = () => {
+    navigate("/dashboard");
   };
 
   //   var token = user?.token;
@@ -76,7 +84,7 @@ export default function ResponsiveAppBar() {
       if (decodedToken.exp * 1000 < new Date().getTime()) handleLogout();
     }
     setUser(JSON.parse(localStorage.getItem("profile")));
-  }, [location]);
+  }, [location, ignored]);
 
   return (
     <AppBar position="static" sx={{ bgcolor: "black", color: "#87a827" }}>
@@ -202,26 +210,27 @@ export default function ResponsiveAppBar() {
                 CREATE PRODUCT
               </Button>
             </Link>
-            {
-              !user ? "" :
+            {!user ? (
+              ""
+            ) : (
               <Link to="/home/shoppingView">
-              <Button
-                onClick={handleCloseNavMenu}
-                sx={{
-                  my: 2,
-                  display: "block",
-                  fontSize: 20,
-                  bgcolor: "secondary.main",
-                  fontWeight: 600,
-                  mx: 2,
-                }}
-                size="large"
-                variant="outlined"
-              >
-                CART
-              </Button>
-            </Link>
-            }
+                <Button
+                  onClick={handleCloseNavMenu}
+                  sx={{
+                    my: 2,
+                    display: "block",
+                    fontSize: 20,
+                    bgcolor: "secondary.main",
+                    fontWeight: 600,
+                    mx: 2,
+                  }}
+                  size="large"
+                  variant="outlined"
+                >
+                  CART
+                </Button>
+              </Link>
+            )}
           </Box>
           {!user ? (
             <Box sx={{ flexGrow: 0 }} size="large">
@@ -292,7 +301,7 @@ export default function ResponsiveAppBar() {
                   <Typography textAlign="center">Account</Typography>
                 </MenuItem>
                 <Divider />
-                <MenuItem onClick={handleCloseUserMenu}>
+                <MenuItem onClick={handleDashboard}>
                   <DashboardIcon sx={{ mr: 2 }} />
                   <Typography textAlign="center">Dashboard</Typography>
                 </MenuItem>

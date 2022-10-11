@@ -6,7 +6,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import FormControl from "@mui/material/FormControl";
-
+import Swal from 'sweetalert2'
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -20,11 +20,22 @@ import axios from "axios";
 
 const ResetPassword = () => {
   const { id, token } = useParams();
+  console.log(id);
+  console.log(token);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/user/auth/reset-password/${id}/${token}`);
+    // if (id.length && token.length < 8) {
+    //   alert("Something was wrong");
+    //   navigate("/");
+    // }
+    axios
+      .get(`http://localhost:3001/user/auth/reset-password/${id}/${token}`)
+      .catch((error) => {
+        alert(error);
+        navigate("/");
+      });
   }, []);
 
   const [values, setValues] = useState({
@@ -70,10 +81,16 @@ const ResetPassword = () => {
         `http://localhost:3001/user/auth/reset-password/${id}/${token}`,
         data
       );
-      alert("Password updated successfully");
+      Swal.fire({
+        title: 'Success', 
+        text: "Password updated successfully", 
+        icon: 'success',
+        timer: 5000
+      });
       navigate("/signIn");
     } catch (error) {
       console.log(error);
+      alert("Something was wrong");
     }
   };
 
