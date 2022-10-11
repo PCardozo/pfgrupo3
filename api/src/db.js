@@ -52,14 +52,11 @@ Animal_type.belongsToMany(Product,{through:'product_animal_types'});
 Product.belongsToMany(Product_type,{through:'product_product_types'});
 Product_type.belongsToMany(Product,{through:'product_product_types'});
 /////////////
-
-/////////////
 User.hasMany(Adoption_petition);
 Adoption_petition.belongsTo(User);
 ////////////////////////////////////////
 Animal.hasMany(Adoption_petition);
 Adoption_petition.belongsTo(Animal);
-
 //////////////////////////////////////
 User.hasMany(Adoption_alta);
 Adoption_alta.belongsTo(User);
@@ -79,9 +76,6 @@ Purchase_order.belongsTo(User);
 Purchase_order.hasMany(Order_item);
 Order_item.belongsTo(Purchase_order);
 ////////////////////////////////////
-
-Animal_type.belongsToMany(Animal, {through: 'animal_animalType'})
-Animal.belongsToMany(Animal_type, {through: 'animal_animalType'})
 module.exports = {
   ...sequelize.models, 
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');

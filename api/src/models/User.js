@@ -1,4 +1,4 @@
-const { DataTypes } = require("sequelize");
+const {DataTypes} = require('sequelize')
 
 module.exports = (sequelize) => {
   sequelize.define("user", {
@@ -55,5 +55,9 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       unique: true,
     },
+    user_products: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull: true,
+    }
   });
 };

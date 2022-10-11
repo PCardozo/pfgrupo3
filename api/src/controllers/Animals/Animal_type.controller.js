@@ -1,56 +1,43 @@
-const {Animal_type, Animal} = require('../../db');
+const {Animal_type} = require('../../db');
 
 const errorVar = {
     err: 500,
     message: 'Something went wrong...',
 }
-let mock = [
-    {
-        name:'Dog',
-    },
-    {
-        name:'Cat',
-    },
-    {
-        name:'Rodent',
-    },
-    {
-        name:'Other',
-    }
-]
 //
 const emptyDB = {
     err: 'Database is empty'
 }
 
-mock.forEach(type => {
-    return async function() {
-        try{
-            await Animal_type.create({
-                name: type.name
-            })
-        } catch {
-
-        }
-    }
-});
-
 async function getAllTypes(req, res) {
-    
     try {
-        let types = await Animal_type.findAll({
-            include: Animal
-        })
-        res.status(200).send(types)
-    } catch(error) {
-        console.log(error)
+        let data = await Animal_type.findAll()
+        if(!data) {
+            return res.status(404).send(emptyDB)
+        } else {
+            data = data.map(e=>e['dataValues'].name)
+            return res.send(data)
+        }
+    } catch (error) {
+        return res.status(500).send(errorVar)
     }
-    
-    
 }
 
 function writeAnimalTypes(){
-    
+    let mock = [
+        {
+            name:'Dog',
+        },
+        {
+            name:'Cat',
+        },
+        {
+            name:'Rodent',
+        },
+        {
+            name:'Other',
+        }
+    ]
     console.log('+ Writing animal types into database...')
     return Animal_type.bulkCreate(mock)
     .then(()=>{console.log('- Wrote animal types into database.')})
