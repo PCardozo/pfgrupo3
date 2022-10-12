@@ -33,7 +33,7 @@ async function addPetition(req, res) {
 }
 
 async function deletePetition(req, res) {
-    let {petitionid} = req.params
+    let {petitionid} = req.params;
     if (!petitionid) return res.status(400).send(badReq);
     try {
         let petition = await Adoption_petition.findOne({
